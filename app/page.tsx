@@ -1,4 +1,12 @@
-export default function Home() {
+import { client } from '@/lib/sanity'
+
+async function getProducts() {
+  return await client.fetch(`*[_type == "product"]`)
+}
+
+export default async function Home() {
+  const products = await getProducts()
+
   return (
     <main className="min-h-screen bg-zinc-900 text-white p-8 overflow-hidden">
       
@@ -9,16 +17,16 @@ export default function Home() {
       </div>
 
       <header className="mb-48 mt-4">
-        <span className="text-xs text-zinc-500 tracking-[0.3em] uppercase" style={{fontFamily: "var(--font-mono)"}}>s — e — m — b — l – e</span>
+        <span className="text-xs text-zinc-500 tracking-[0.3em] uppercase" style={{fontFamily: "var(--font-mono)"}}>S — E — M — B — L — E</span>
       </header>
 
       <section className="relative">
-        <p className="text-xs text-zinc-600 mb-2 tracking-widest" style={{fontFamily: "var(--font-mono)"}}>001</p>
+        <p className="text-xs text-zinc-600 mb-2 tracking-widest" style={{fontFamily: "var(--font-mono)"}}>Day Dot</p>
         <h1 className="text-[11vw] font-semibold tracking-tight leading-none text-zinc-100" style={{fontFamily: "var(--font-crimson)"}}>
-          soft forms
+          Semble
         </h1>
         <h1 className="text-[3vw] font-semibold tracking-tight leading-none text-amber-700 ml-[8vw] -mt-2" style={{fontFamily: "var(--font-mono)"}}>
-          by belsk - fabric user and student of science .
+          by belsk.
         </h1>
       </section>
 
@@ -28,6 +36,17 @@ export default function Home() {
           mentalSci / ecoSci<br />
           melbourne
         </p>
+      </section>
+
+      <section className="mt-32">
+        <p className="text-xs text-zinc-600 mb-8 tracking-widest" style={{fontFamily: "var(--font-mono)"}}>Products</p>
+        {products.map((product: any) => (
+          <div key={product._id} className="mb-8 border-t border-zinc-800 pt-8">
+            <h2 className="text-2xl font-semibold" style={{fontFamily: "var(--font-crimson)"}}>{product.name}</h2>
+            <p className="text-zinc-500 text-sm mt-2" style={{fontFamily: "var(--font-mono)"}}>{product.description}</p>
+            <p className="text-amber-700 text-sm mt-2" style={{fontFamily: "var(--font-mono)"}}>A${product.price}</p>
+          </div>
+        ))}
       </section>
 
       <footer className="mt-48 flex justify-between items-end">
