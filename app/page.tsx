@@ -8,50 +8,41 @@ export default async function Home() {
   const products = await getProducts()
 
   return (
-    <main className="min-h-screen bg-zinc-900 text-white p-8 overflow-hidden">
-      
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none">
-        <div className="absolute top-[23%] left-[60%] w-px h-48 bg-zinc-700"></div>
-        <div className="absolute top-[70%] left-[20%] w-32 h-px bg-amber-700 opacity-60"></div>
-        <div className="absolute top-[45%] left-[75%] text-zinc-700 text-xs rotate-90" style={{fontFamily: "var(--font-mono)"}}>00 / 01</div>
-      </div>
+    <main className="min-h-screen bg-stone-100 text-stone-800 p-8 flex flex-col relative">
 
-      <header className="mb-48 mt-4">
-        <span className="text-xs text-zinc-500 tracking-[0.3em] uppercase" style={{fontFamily: "var(--font-mono)"}}>S — E — M — B — L — E</span>
+      <div className="fixed inset-0 pointer-events-none" style={{
+        backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)',
+        backgroundSize: '80px 80px'
+      }}></div>
+
+      <header className="flex justify-between items-start relative z-10">
+        <span className="font-mono text-xs tracking-widest uppercase text-stone-400">Belski/Semble</span>
+        <span className="font-mono text-xs tracking-widest uppercase text-stone-400">Signal &gt; Noise</span>
       </header>
 
-      <section className="relative">
-        <p className="text-xs text-zinc-600 mb-2 tracking-widest" style={{fontFamily: "var(--font-mono)"}}>Day Dot</p>
-        <h1 className="text-[11vw] font-semibold tracking-tight leading-none text-zinc-100" style={{fontFamily: "var(--font-crimson)"}}>
-          Semble
+      <section className="flex-1 flex flex-col justify-center relative z-10 mt-24">
+        <p className="font-mono text-xs tracking-widest text-stone-400 uppercase mb-6">Day Dot — 001</p>
+        <h1 className="font-mono uppercase leading-none text-stone-800" style={{
+          fontSize: 'clamp(3rem, 10vw, 8rem)',
+          letterSpacing: '0.25em',
+        }}>
+          S e m b l e
         </h1>
-        <h1 className="text-[3vw] font-semibold tracking-tight leading-none text-amber-700 ml-[8vw] -mt-2" style={{fontFamily: "var(--font-mono)"}}>
-          by belsk.
-        </h1>
-      </section>
-
-      <section className="mt-32 max-w-xs ml-[40%]">
-        <p className="text-zinc-500 text-sm leading-loose" style={{fontFamily: "var(--font-mono)"}}>
-          soft form / fabric user<br />
-          mentalSci / ecoSci<br />
-          melbourne
+        <p className="font-mono text-xs tracking-widest text-stone-400 mt-6 ml-1">
+          Est. Melbourne, 2026
         </p>
       </section>
 
-      <section className="mt-32">
-        <p className="text-xs text-zinc-600 mb-8 tracking-widest" style={{fontFamily: "var(--font-mono)"}}>Products</p>
-        {products.map((product: any) => (
-          <div key={product._id} className="mb-8 border-t border-zinc-800 pt-8">
-            <h2 className="text-2xl font-semibold" style={{fontFamily: "var(--font-crimson)"}}>{product.name}</h2>
-            <p className="text-zinc-500 text-sm mt-2" style={{fontFamily: "var(--font-mono)"}}>{product.description}</p>
-            <p className="text-amber-700 text-sm mt-2" style={{fontFamily: "var(--font-mono)"}}>A${product.price}</p>
-          </div>
-        ))}
+      <section className="mt-32 relative z-10 border-t border-stone-300 pt-8 max-w-xs">
+        <p className="font-mono text-xs tracking-widest text-stone-400 uppercase mb-3">001 / Object</p>
+        <p className="font-mono text-xs leading-relaxed text-stone-500">
+          Objects for the beginning of a life. Handmade. Small run.
+        </p>
       </section>
 
-      <footer className="mt-48 flex justify-between items-end">
-        <div className="text-zinc-700 text-xs tracking-widest" style={{fontFamily: "var(--font-mono)"}}>2026</div>
-        <div className="w-2 h-2 rounded-full bg-blue-400 opacity-50"></div>
+      <footer className="mt-16 flex justify-between items-end relative z-10 border-t border-stone-300 pt-6">
+        <span className="font-mono text-xs text-stone-400 tracking-widest">Belski</span>
+        <span className="font-mono text-xs text-stone-400 tracking-widest">semble.net.au</span>
       </footer>
 
     </main>
